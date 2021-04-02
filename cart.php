@@ -1,8 +1,4 @@
 <?php
-/*
-Author: Javed Ur Rehman
-Website: https://www.allphptricks.com
-*/
 session_start();
 $status="";
 if (isset($_POST['action']) && $_POST['action']=="remove"){
@@ -31,13 +27,13 @@ if (isset($_POST['action']) && $_POST['action']=="change"){
 ?>
 <html>
 <head>
-<title>Demo Shopping Cart - AllPHPTricks.com</title>
+<title>Ecommerce</title>
 <link rel='stylesheet' href='css/style.css' type='text/css' media='all' />
 </head>
 <body>
 <div style="width:700px; margin:50 auto;">
 
-<h2>Demo Shopping Cart</h2>   
+<h2>Ecommerce</h2>   
 
 <?php
 if(!empty($_SESSION["shopping_cart"])) {
@@ -120,8 +116,6 @@ $total_price += ($product["price"]*$product["quantity"]);
 
 
 <br /><br />
-<a href="https://www.allphptricks.com/simple-shopping-cart-using-php-and-mysql/"><strong>Tutorial Link</strong></a> <br /><br />
-For More Web Development Tutorials Visit: <a href="https://www.allphptricks.com/"><strong>AllPHPTricks.com</strong></a>
 </div>
 </body>
 </html>
