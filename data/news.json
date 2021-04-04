@@ -1,0 +1,40 @@
+{
+    "news": [{
+            "id": 1,
+            "image": "../images/news1.jpg",
+            "header": "Styling White Shirts After A Cool Day",
+            "author": "Admin1",
+            "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo praesentium, numquam non provident rem sed minus natus unde vel modi!"
+        },
+
+        {
+            "id": 2,
+            "image": "../images/news2.jpg",
+            "header": "Styling White Shirts After A Cool Day",
+            "author": "Admin1",
+            "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo praesentium, numquam non provident rem sed minus natus unde vel modi!"
+        },
+        {
+            "id": 3,
+            "image": "../images/news3.jpg",
+            "header": "Styling White Shirts After A Cool Day",
+            "author": "Admin1",
+            "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo praesentium, numquam non provident rem sed minus natus unde vel modi!"
+        },
+        {
+            "id": 4,
+            "image": "../images/news4.jpg",
+            "header": "Styling White Shirts After A Cool Day",
+            "author": "Admin1",
+            "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo praesentium, numquam non provident rem sed minus natus unde vel modi!"
+        },
+        {
+            "id": 5,
+            "image": "../images/news5.jpg",
+            "header": "Styling White Shirts After A Cool Day",
+            "author": "Admin1",
+            "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo praesentium, numquam non provident rem sed minus natus unde vel modi!"
+        }
+
+    ]
+}

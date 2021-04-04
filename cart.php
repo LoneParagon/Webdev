@@ -117,5 +117,6 @@ $total_price += ($product["price"]*$product["quantity"]);
 
 <br /><br />
 </div>
+<a href="./index.php">asd</a>
 </body>
 </html>
