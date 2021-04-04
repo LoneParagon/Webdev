@@ -2138,6 +2138,11 @@ Cart Area
   transition: all 0.3s ease-in-out;
 }
 
+.remove {
+  border: none;
+  background-color: white;
+}
+
 .cart__table {
   display: block;
   width: 100%;

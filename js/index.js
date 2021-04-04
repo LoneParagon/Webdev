@@ -94,3 +94,20 @@ window.addEventListener("scroll", e => {
     gotoTop.classList.remove("show-top");
   }
 });
+
+// Shipping
+
+const shipping = document.querySelector(".shipping_checkbox");
+const total_sum_junk = $('.total_ship').text();
+const total_sum = parseInt(total_sum_junk.substring(1, total_sum_junk.length));
+
+shipping.addEventListener("click", () => {
+  if (shipping.checked) {
+    $('.shipping_text').text('7$');
+    $('.total_ship').text('$'+(total_sum+7));
+  }
+  else {
+    $('.shipping_text').text('0$');
+    $('.total_ship').text('$'+(total_sum));
+  }
+});
