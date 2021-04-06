@@ -25,3 +25,13 @@ CREATE TABLE subscribers
 );
 
 insert into subscribers (email, date) values ('abs@abs.abs', '04.04.2021');
+
+create TABLE orders
+(
+    id serial NOT NULL,
+    productCodes character varying[] NOT NULL,
+    productQuantities character varying[] NOT NULL,
+    email character varying NOT NULL,
+    shipping bool NOT NULL,
+    PRIMARY KEY (id)
+);

@@ -2131,6 +2131,21 @@ Cart Area
   object-fit: contain;
 }
 
+.input-counter {
+  max-width: 9rem;
+  padding: .5rem;
+}
+
+.input-counter .form-control {
+  text-align: right;
+}
+
+.form-control[type="number"]::-webkit-inner-spin-button,
+.form-control[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .remove__cart-item svg {
   width: 1.6rem;
   height: 1.6rem;
@@ -2227,7 +2242,7 @@ Cart Area
 }
 
 .cart__totals {
-  width: 60rem;
+  max-width: 60rem;
   /* height: 30rem; */
   margin: 5rem auto 0 auto;
   color: var(--black5);
@@ -2266,21 +2281,27 @@ Cart Area
   right: 1rem;
 }
 
-.cart__totals a:link,
-.cart__totals a:visited {
+.cart__totals input  {
   font-size: 1.5rem;
   padding: 1.2rem 3rem;
+  border: 1px solid var(--black);
+}
+
+.cart__totals input[type="submit"]  {
   color: var(--black);
   text-transform: uppercase;
-  border: 1px solid var(--black);
   transition: all 0.4s ease-in-out;
 }
 
-.cart__totals a:hover {
+.cart__totals input[type="submit"]:hover {
   background-color: var(--black);
   color: var(--white);
   border: 1px solid var(--black);
 }
+
+.cart__totals input[type="email"] {
+  width: 70%;
+}  
 
 /*
 ======================

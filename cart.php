@@ -183,18 +183,18 @@ if (isset($_POST['action']) && $_POST['action']=="change"){
 												<input type='hidden' name='code' value="<?php echo $product["code"]; ?>" />
 												<input type='hidden' name='action' value="change" />
 												<div class="input-counter">
-													<div>
-														<span class="minus-btn">
-															<svg>
-																<use xlink:href="./images/sprite.svg#icon-minus"></use>
-															</svg>
-														</span>
-														<input name="quantity" type="text" min="1" value="<?php echo $product["quantity"] ?>" max="10" class="counter-btn quantity" onchange="this.form.submit()">
-														<span class="plus-btn" onclick="">
-															<svg>
+													<div class="input-group">
+                                                        <button type='submit' class='minus-btn btn-minus'>
+                                                            <svg>
+                                                                <use xlink:href="./images/sprite.svg#icon-minus"></use>
+                                                            </svg>
+                                                        </button>
+                                                        <input class="form-control quantity counter-btn" min="1" name="quantity" value="<?php echo $product["quantity"] ?>" type="number" onchange="this.form.submit()">
+														<button type='submit' class='plus-btn btn-plus'>
+                                                            <svg>
 																<use xlink:href="./images/sprite.svg#icon-plus"></use>
-															</svg>
-														</span>
+                                                            </svg>
+                                                        </button>
 													</div>
 												</div>
 											</form>
@@ -232,7 +232,8 @@ if (isset($_POST['action']) && $_POST['action']=="change"){
                                 <a href="/">Continue Shopping</a>
                             </div>
                             <div class="check__shipping">
-                                <input type="checkbox" class="shipping_checkbox">
+                                <form action="php/checkout.php" method="post">
+                                <input type="checkbox" class="shipping_checkbox" name="shipping">
                                 <span>Shipping(+7$)</span>
                             </div>
                         </div>
@@ -242,7 +243,16 @@ if (isset($_POST['action']) && $_POST['action']=="change"){
                             <ul>
                                 <li>
                                     Subtotal
-                                    <span class="new__price"><?php echo "$".$total_price; ?></span>
+                                    <span class="new__price">
+                                        <?php
+                                        if (isset($total_price)){ 
+                                            echo "$".$total_price;
+                                        } else {
+                                            echo "$0"; 
+                                            $total_price=0;
+                                        };
+                                        ?>
+                                    </span>
                                 </li>
                                 <li>
                                     Shipping
@@ -253,7 +263,9 @@ if (isset($_POST['action']) && $_POST['action']=="change"){
                                     <span class="new__price total_ship"><?php echo "$".$total_price; ?></span>
                                 </li>
                             </ul>
-                            <a href="">PROCEED TO CHECKOUT</a>
+                            <input type="email" placeholder="Enter your email address" class="checkout__btn" name="checkout__btn">
+                            <input type="submit" class="checkout__link" href="" value="Checkout"></input>
+                            </form>
                         </div>
                     </form>
                 </div>
