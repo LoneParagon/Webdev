@@ -16,13 +16,12 @@ if(!empty($_SESSION["shopping_cart"])) {
 }
 
 if (isset($_POST['action']) && $_POST['action']=="change"){
-  foreach($_SESSION["shopping_cart"] as &$value){
-    if($value['code'] === $_POST["code"]){
-        $value['quantity'] = $_POST["quantity"];
-        break; // Stop the loop after we've found the product
+    foreach($_SESSION["shopping_cart"] as &$value){
+        if($value['code'] === $_POST["code"]){
+            $value['quantity'] = $_POST["quantity"];
+            break;
+        }   
     }
-}
-  	
 }
 ?>
 <!DOCTYPE html>
@@ -142,132 +141,130 @@ if (isset($_POST['action']) && $_POST['action']=="change"){
         <section class="section cart__area">
             <div class="container">
                 <div class="responsive__cart-area">
-                    <form class="cart__form">
-                        <div class="cart__table table-responsive">
-                            <table width="100%" class="table">
-                                <thead>
-                                    <tr>
-                                        <th>PRODUCT</th>
-                                        <th>NAME</th>
-                                        <th>UNIT PRICE</th>
-                                        <th>QUANTITY</th>
-                                        <th>TOTAL</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-									<?php
-										if(isset($_SESSION["shopping_cart"])){
-											$total_price = 0;
-									?>
-									<?php		
-										foreach ($_SESSION["shopping_cart"] as $product){
-									?>
-									<tr>
-										<td class="product__thumbnail">
-											<a href="./product.html">
-												<img src='<?php echo $product["image"]; ?>' />
-											</a>
-										</td>
-										<td class="product__name">
-											<a href="./product.html"><?php echo $product["name"]; ?></a>
-											<br /> <br />
-											<small>Some info, not sure yet</small>
-										</td>
-										<td class="product__price">
-											<div class="price">
-												<span class="new__price"><?php echo "$".$product["price"]; ?></span>
+                    <div class="cart__table table-responsive">
+                        <table width="100%" class="table">
+                            <thead>
+                                <tr>
+                                    <th>PRODUCT</th>
+                                    <th>NAME</th>
+                                    <th>UNIT PRICE</th>
+                                    <th>QUANTITY</th>
+                                    <th>TOTAL</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+				    			<?php
+									if(isset($_SESSION["shopping_cart"])){
+										$total_price = 0;
+								?>
+								<?php		
+									foreach ($_SESSION["shopping_cart"] as $product){
+								?>
+								<tr>
+									<td class="product__thumbnail">
+										<a href="./product.php">
+											<img src='<?php echo $product["image"]; ?>' />
+										</a>
+									</td>
+									<td class="product__name">
+										<a href="./product.php"><?php echo $product["name"]; ?></a>
+										<br /> <br />
+										<small>Some info, not sure yet</small>
+									</td>
+									<td class="product__price">
+										<div class="price">
+											<span class="new__price"><?php echo "$".$product["price"]; ?></span>
+										</div>
+									</td>
+									<td class="product__quantity">
+										<form method='POST' action='/cart.php'>
+											<input type='hidden' name='code' value="<?php echo $product["code"]; ?>" />
+											<input type='hidden' name='action' value="change" />
+											<div class="input-counter">
+												<div class="input-group">
+                                                    <button type='submit' class='minus-btn btn-minus'>
+                                                        <svg>
+                                                            <use xlink:href="./images/sprite.svg#icon-minus"></use>
+                                                        </svg>
+                                                    </button>
+                                                    <input class="form-control quantity counter-btn" min="1" max="9" name="quantity" value="<?php echo $product["quantity"] ?>" type="number" onchange="this.form.submit()">
+							    					<button type='submit' class='plus-btn btn-plus'>
+                                                        <svg>
+									    					<use xlink:href="./images/sprite.svg#icon-plus"></use>
+                                                        </svg>
+                                                    </button>
+												</div>
 											</div>
-										</td>
-										<td class="product__quantity">
+										</form>
+									</td>
+									<td class="product__subtotal">
+										<div class="price">
+											<span class="new__price">
+												<?php echo "$".$product["price"]*$product["quantity"]; ?>
+											</span>
+										</div>
+										<a href="#" class="remove__cart-item">
 											<form method='post' action=''>
 												<input type='hidden' name='code' value="<?php echo $product["code"]; ?>" />
-												<input type='hidden' name='action' value="change" />
-												<div class="input-counter">
-													<div class="input-group">
-                                                        <button type='submit' class='minus-btn btn-minus'>
-                                                            <svg>
-                                                                <use xlink:href="./images/sprite.svg#icon-minus"></use>
-                                                            </svg>
-                                                        </button>
-                                                        <input class="form-control quantity counter-btn" min="1" name="quantity" value="<?php echo $product["quantity"] ?>" type="number" onchange="this.form.submit()">
-														<button type='submit' class='plus-btn btn-plus'>
-                                                            <svg>
-																<use xlink:href="./images/sprite.svg#icon-plus"></use>
-                                                            </svg>
-                                                        </button>
-													</div>
-												</div>
+												<input type='hidden' name='action' value="remove" />
+												<button type='submit' class='remove'>
+													<svg>
+														<use xlink:href="./images/sprite.svg#icon-trash"></use>
+													</svg>
+												</button>
 											</form>
-										</td>
-										<td class="product__subtotal">
-											<div class="price">
-												<span class="new__price">
-													<?php echo "$".$product["price"]*$product["quantity"]; ?>
-												</span>
-											</div>
-											<a href="#" class="remove__cart-item">
-												<form method='post' action=''>
-													<input type='hidden' name='code' value="<?php echo $product["code"]; ?>" />
-													<input type='hidden' name='action' value="remove" />
-													<button type='submit' class='remove'>
-														<svg>
-															<use xlink:href="./images/sprite.svg#icon-trash"></use>
-														</svg>
-													</button>
-												</form>
-											</a>
-										</td>
-									</tr>
-									<?php
-									$total_price += ($product["price"]*$product["quantity"]);
-									}
+										</a>
+									</td>
+								</tr>
+								<?php
+								$total_price += ($product["price"]*$product["quantity"]);
 								}
-									?>
-                                </tbody>
-                            </table>
-                        </div>
+							}
+								?>
+                            </tbody>
+                        </table>
+                    </div>
 
-                        <div class="cart-btns">
-                            <div class="continue__shopping">
-                                <a href="/">Continue Shopping</a>
-                            </div>
-                            <div class="check__shipping">
-                                <form action="php/checkout.php" method="post">
-                                <input type="checkbox" class="shipping_checkbox" name="shipping">
+                    <div class="cart-btns">
+                        <div class="continue__shopping">
+                            <a href="/">Continue Shopping</a>
+                        </div>
+                        <div class="check__shipping">
+                            <form action="php/checkout.php" method="post">
+                                <input id="shipping_checkbox" type="checkbox" class="shipping_checkbox" name="shipping">
                                 <span>Shipping(+7$)</span>
                             </div>
-                        </div>
+                    </div>
 
-                        <div class="cart__totals">
-                            <h3>Cart Totals</h3>
-                            <ul>
-                                <li>
-                                    Subtotal
-                                    <span class="new__price">
-                                        <?php
-                                        if (isset($total_price)){ 
-                                            echo "$".$total_price;
-                                        } else {
-                                            echo "$0"; 
-                                            $total_price=0;
-                                        };
-                                        ?>
-                                    </span>
-                                </li>
-                                <li>
-                                    Shipping
-                                    <span class="shipping_text">$0</span>
-                                </li>
-                                <li>
-                                    Total
-                                    <span class="new__price total_ship"><?php echo "$".$total_price; ?></span>
-                                </li>
-                            </ul>
-                            <input type="email" placeholder="Enter your email address" class="checkout__btn" name="checkout__btn">
-                            <input type="submit" class="checkout__link" href="" value="Checkout"></input>
-                            </form>
-                        </div>
-                    </form>
+                    <div class="cart__totals">
+                        <h3>Cart Totals</h3>
+                        <ul>
+                            <li>
+                                Subtotal
+                                <span class="new__price">
+                                    <?php
+                                    if (isset($total_price)){ 
+                                        echo "$".$total_price;
+                                    } else {
+                                        echo "$0"; 
+                                        $total_price=0;
+                                    };
+                                    ?>
+                                </span>
+                            </li>
+                            <li>
+                                Shipping
+                                <span class="shipping_text">$0</span>
+                            </li>
+                            <li>
+                                Total
+                                <span class="new__price total_ship"><?php echo "$".$total_price; ?></span>
+                            </li>
+                        </ul>
+                        <input type="email" placeholder="Enter your email address" id="checkout_email" class="checkout__btn" name="checkout__btn" required>
+                        <input type="submit" class="checkout__link" href="" value="Checkout"></input>
+                        </form>
+                    </div>
                 </div>
             </div>
         </section>

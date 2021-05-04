@@ -35,3 +35,20 @@ create TABLE orders
     shipping bool NOT NULL,
     PRIMARY KEY (id)
 );
+
+CREATE TABLE news
+(
+    id serial NOT NULL,
+    author character varying NOT NULL,
+    image character varying NOT NULL,
+    header character varying NOT NULL,
+    content character varying NOT NULL,
+    PRIMARY KEY (id)
+);
+
+insert into news (author, image, header, content) values 
+('Admin', './images/news1.jpg', 'Styling White Shirts After A Cool Day', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo praesentium, numquam non provident rem sed minus natus unde vel modi!'),
+('Admin', './images/news2.jpg', 'Styling White Shirts After A Cool Day', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo praesentium, numquam non provident rem sed minus natus unde vel modi!'),
+('Admin', './images/news3.jpg', 'Styling White Shirts After A Cool Day', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo praesentium, numquam non provident rem sed minus natus unde vel modi!'),
+('Admin', './images/news4.jpg', 'Styling White Shirts After A Cool Day', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo praesentium, numquam non provident rem sed minus natus unde vel modi!'),
+('Admin', './images/news5.jpg', 'Styling White Shirts After A Cool Day', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo praesentium, numquam non provident rem sed minus natus unde vel modi!');

@@ -2137,7 +2137,7 @@ Cart Area
 }
 
 .input-counter .form-control {
-  text-align: right;
+  text-align: center;
 }
 
 .form-control[type="number"]::-webkit-inner-spin-button,
@@ -2146,11 +2146,30 @@ Cart Area
   margin: 0;
 }
 
+.input-group input  {
+  font-size: 1.5rem;
+  padding: 1.2rem 3rem;
+  border: 1px solid var(--black);
+}
+
+.input-group button[type="submit"]  {
+  color: var(--black);
+  transition: all 0.4s ease-in-out;
+}
+
+.input-group button[type="submit"]:hover {
+  background-color: var(--black);
+  color: var(--white);
+  border: 1px solid var(--black);
+  cursor: pointer;
+}
+
 .remove__cart-item svg {
   width: 1.6rem;
   height: 1.6rem;
   fill: var(--grey2);
   transition: all 0.3s ease-in-out;
+  cursor: pointer;
 }
 
 .remove {
@@ -2297,6 +2316,7 @@ Cart Area
   background-color: var(--black);
   color: var(--white);
   border: 1px solid var(--black);
+  cursor: pointer;
 }
 
 .cart__totals input[type="email"] {

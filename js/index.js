@@ -121,3 +121,21 @@ $('.btn-plus, .btn-minus').on('click', function(e) {
     input[0][isNegative ? 'stepDown' : 'stepUp']()
   }
 })
+
+function checkoutAjax(){
+  // (A) GET FORM DATA
+  var data = new FormData();
+  data.append("code", $('.quantityCode').val());
+  data.append("action", $('.action').val());
+  data.append("quantity", $('.quantity').val()+1);
+ 
+  // (B) AJAX
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", "../php/changeQuantity.php");
+  // What to do when server responds
+  xhr.onload = function(){ console.log(this.response); };
+  xhr.send(data);
+ 
+  // (C) PREVENT HTML FORM SUBMIT
+  return false;
+}

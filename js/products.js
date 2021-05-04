@@ -8,7 +8,7 @@ const pic2 = document.getElementById("pic2");
 const pic3 = document.getElementById("pic3");
 const pic4 = document.getElementById("pic4");
 const pic5 = document.getElementById("pic5");
-const picContainer = document.querySelector(".newItem__pictures");
+const picContainer = document.querySelector(".product__pictures");
 const zoom = document.getElementById("zoom");
 const pic = document.getElementById("pic");
 
@@ -24,7 +24,7 @@ let picActive = 1;
       const target = e.target.closest("img");
       if (!target) return;
       const id = target.id.slice(3);
-      changeImage(`./images/news/iPhone/iphone${id}.jpeg`, id);
+      changeImage(`./images/products/iPhone/iphone${id}.jpeg`, id);
     });
   }
 });

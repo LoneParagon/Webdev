@@ -99,11 +99,12 @@
               </svg>
             </a>	
 
-			      <a href="#" class="icon__item">              
+            <div class="nav__icons">
+            <a href="#" class="icon__item">
               <svg class="icon__search">
                 <use xlink:href="./images/sprite.svg#icon-search"></use>
               </svg>
-            </a>
+            </a>	
 
             <a href="cart.php" class="icon__item">
               <svg class="icon__cart">
@@ -227,7 +228,7 @@
         <div class="category__container" data-aos="fade-up" data-aos-duration="1200">
           <div class="category__center">
             <?php
-              $result = pg_query($con,"SELECT * FROM 	products");
+              $result = pg_query($con,"SELECT * FROM products");
               while($row = pg_fetch_assoc($result)){
                 echo "<div class='product category__products'>
                         <form method='post' action=''>
@@ -236,7 +237,7 @@
                           <img src='".$row['image']."'>
                         </div>
                         <div class='product__footer'>
-                          <h3><a class='product_link' href='./product.html'>".$row['name']."</a></h3>
+                          <h3><a class='product_link' href='./product.php'>".$row['name']."</a></h3>
                           <div class='rating'>";
                             if (rand(0,100)<50)
                               echo "<svg>
@@ -457,76 +458,25 @@
           <div class="glide" id="glide_5">
             <div class="glide__track" data-glide-el="track">
               <ul class="glide__slides newsSlides">
-                <li class="glide__slide">
-                  <div class="new__card">
-                    <div class="card__header">
-                      <img src="./images/news1.jpg" alt="">
-                    </div>
-                    <div class="card__footer">
-                      <h3>Styling White Shirts After A Cool Day</h3>
-                      <span>By Admin</span>
-                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo praesentium, numquam non
-                        provident rem sed minus natus unde vel modi!</p>
-                      <a href="#"><button>Read More</button></a>
-                    </div>
-                  </div>
-                </li>
-                <li class="glide__slide">
-                  <div class="new__card">
-                    <div class="card__header">
-                      <img src="./images/news2.jpg" alt="">
-                    </div>
-                    <div class="card__footer">
-                      <h3>Styling White Shirts After A Cool Day</h3>
-                      <span>By Admin</span>
-                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo praesentium, numquam non
-                        provident rem sed minus natus unde vel modi!</p>
-                      <a href="#"><button>Read More</button></a>
-                    </div>
-                  </div>
-                </li>
-                <li class="glide__slide">
-                  <div class="new__card">
-                    <div class="card__header">
-                      <img src="./images/news3.jpg" alt="">
-                    </div>
-                    <div class="card__footer">
-                      <h3>Styling White Shirts After A Cool Day</h3>
-                      <span>By Admin</span>
-                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo praesentium, numquam non
-                        provident rem sed minus natus unde vel modi!</p>
-                      <a href="#"><button>Read More</button></a>
-                    </div>
-                  </div>
-                </li>
-                <li class="glide__slide">
-                  <div class="new__card">
-                    <div class="card__header">
-                      <img src="./images/news4.jpg" alt="">
-                    </div>
-                    <div class="card__footer">
-                      <h3>Styling White Shirts After A Cool Day</h3>
-                      <span>By Admin</span>
-                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo praesentium, numquam non
-                        provident rem sed minus natus unde vel modi!</p>
-                      <a href="#"><button>Read More</button></a>
-                    </div>
-                  </div>
-                </li>
-                <li class="glide__slide">
-                  <div class="new__card">
-                    <div class="card__header">
-                      <img src="./images/news5.jpg" alt="">
-                    </div>
-                    <div class="card__footer">
-                      <h3>Styling White Shirts After A Cool Day</h3>
-                      <span>By Admin</span>
-                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo praesentium, numquam non
-                        provident rem sed minus natus unde vel modi!</p>
-                      <a href="#"><button>Read More</button></a>
-                    </div>
-                  </div>
-                </li>
+                <?php
+                  include('db.php');
+                  $result = pg_query($con,"SELECT * FROM news");
+                  while($row = pg_fetch_assoc($result)){
+                    echo "<li class='glide__slide'>
+                        <div class='new__card'>
+                            <div class='card__header'>
+                                <img src='".$row['image']."'>
+                            </div>
+                            <div class='card__footer'>
+                                <h3>".$row['header']."</h3>
+                                <span>By ".$row['author']."</span>
+                                <p>".$row['content']."</p>
+                                <a href=\"#\"><button>Read More</button></a>
+                            </div>
+                        </div>
+                        </li>";}
+                  pg_close($con);
+                ?>
               </ul>
             </div>
           </div>
