@@ -237,7 +237,7 @@
                           <img src='".$row['image']."'>
                         </div>
                         <div class='product__footer'>
-                          <h3><a class='product_link' href='./product.php'>".$row['name']."</a></h3>
+                          <h3><a class='product_link' href='./product.php?code=".$row['code']."'>".$row['name']."</a></h3>
                           <div class='rating'>";
                             if (rand(0,100)<50)
                               echo "<svg>

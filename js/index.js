@@ -122,6 +122,8 @@ $('.btn-plus, .btn-minus').on('click', function(e) {
   }
 })
 
+// Dont want to bother with it so just skip
+
 function checkoutAjax(){
   // (A) GET FORM DATA
   var data = new FormData();
@@ -138,4 +140,10 @@ function checkoutAjax(){
  
   // (C) PREVENT HTML FORM SUBMIT
   return false;
+}
+
+// Quantity for item not in cart
+
+function notInCart(){
+  document.getElementById('cartCheck').innerHTML = '<h3>Not in cart, add first</h3>';
 }

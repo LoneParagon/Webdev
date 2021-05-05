@@ -238,60 +238,37 @@ if (isset($_POST['action']) && $_POST['action']=="remove"){
                     </div>
                   </li>
                   <li>
-                      <?php
-                      $check = false;
-                      foreach ($_SESSION["shopping_cart"] as $product){
-                      if ($product["code"]==$_GET["code"]) {
-                      echo  "<div class='input-counter'>
+                      <?php 
+                      $product = pg_fetch_assoc(pg_query($con,"SELECT * FROM products WHERE code='".$_GET['code']."'"));?> 
+                    <div class="input-counter">
                       <span>Quantity:</span>
-                      <form method='POST' action='./cart.php'>
-											<input type='hidden' name='code' value=".$product['code']." />
-											<input type='hidden' name='action' value='change' />
-											<div class='input-counter'>
-												<div class='input-group'>
+                      <form method='POST' action='/product.php?code=<?php echo $product["code"];?>'>
+											<input type='hidden' name='code' value="<?php
+                      echo $product["code"]; 
+                      ?>" />
+											<input type='hidden' name='action' value="change" />
+											<div class="input-counter">
+												<div class="input-group">
                                                     <button type='submit' class='minus-btn btn-minus'>
                                                         <svg>
-                                                            <use xlink:href='./images/sprite.svg#icon-minus'></use>
+                                                            <use xlink:href="./images/sprite.svg#icon-minus"></use>
                                                         </svg>
                                                     </button>
-                                                    <input class='form-control quantity counter-btn' min='1' max='9' name='quantity' value='".$product["quantity"]."' type='number' onchange='this.form.submit()'>
+                                                    <input class="form-control quantity counter-btn" min="1" max="9" name="quantity" value="<?php echo $product["quantity"] ?>" type="number" onchange="this.form.submit()">
 							    					<button type='submit' class='plus-btn btn-plus'>
                                                         <svg>
-									    					<use xlink:href='./images/sprite.svg#icon-plus'></use>
+									    					<use xlink:href="./images/sprite.svg#icon-plus"></use>
                                                         </svg>
                                                     </button>
 												</div>
-											</div>";
-                      $check = true;
-                      $quantity = $product["quantity"];
-                      } else {continue;};};
-                      if (!$check) {
-                        echo  "<div class='input-counter'>
-                      <span>Quantity:</span>
-											<div class='input-counter'>
-												<div class='input-group'>
-                                                    <button type='submit' class='minus-btn btn-minus' onclick='notInCart()'>
-                                                        <svg>
-                                                            <use xlink:href='./images/sprite.svg#icon-minus'></use>
-                                                        </svg>
-                                                    </button>
-                                                    <input class='form-control quantity counter-btn' min='1' max='9' name='quantity' value='0' type='number' onclick='notInCart()'>
-							    					<button type='submit' class='plus-btn btn-plus' onclick='notInCart()'>
-                                                        <svg>
-									    					<use xlink:href='./images/sprite.svg#icon-plus'></use>
-                                                        </svg>
-                                                    </button>
-												</div>
-											</div>";
-                      };?>
+											</div>
 										</form>
                     </div>
                   </li>
 
                   <li>
                     <span>Subtotal:</span>
-                    <a href="#" class="new__price" id="cartCheck"><?php if ($check){echo "$".$row['price']*$quantity.".00";}
-                    else {echo "$".$row['price'];};?></a>
+                    <a href="#" class="new__price">$250.99</a>
                   </li>
                   <li>
                     <span>Brand:</span>

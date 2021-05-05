@@ -162,12 +162,12 @@ if (isset($_POST['action']) && $_POST['action']=="change"){
 								?>
 								<tr>
 									<td class="product__thumbnail">
-										<a href="./product.php">
+										<a href="./product.php?code=<?php echo $product["code"]?>">
 											<img src='<?php echo $product["image"]; ?>' />
 										</a>
 									</td>
 									<td class="product__name">
-										<a href="./product.php"><?php echo $product["name"]; ?></a>
+										<a href="./product.php?code=<?php echo $product["code"]?>"><?php echo $product["name"]; ?></a>
 										<br /> <br />
 										<small>Some info, not sure yet</small>
 									</td>
