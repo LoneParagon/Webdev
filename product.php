@@ -23,6 +23,36 @@ if (isset($_POST['action']) && $_POST['action']=="remove"){
           }   
       }
   }
+
+if (isset($_POST['code']) && $_POST['code']!=""){
+    $code = $_POST['code'];
+    $result = pg_query($con,"SELECT * FROM products WHERE code='$code'");
+    $row = pg_fetch_assoc($result);
+    $name = $row['name'];
+    $code = $row['code'];
+    $price = $row['price'];
+    $image = $row['image'];
+
+    $cartArray = array(
+      $code=>array(
+        'name'=>$name,
+        'code'=>$code,
+        'price'=>$price,
+        'quantity'=>1,
+        'image'=>$image)
+    );
+
+    if(empty($_SESSION["shopping_cart"])) {
+      $_SESSION["shopping_cart"] = $cartArray;
+    }else{
+      $array_keys = array_keys($_SESSION["shopping_cart"]);
+      if(in_array($code,$array_keys)) {
+      } else {
+      $_SESSION["shopping_cart"] = array_merge($_SESSION["shopping_cart"],$cartArray);
+      }
+
+      }
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -167,24 +197,12 @@ if (isset($_POST['action']) && $_POST['action']=="remove"){
               </div>
               <div class="zoom" id="zoom"></div>
             </div>
-
-            <div class="product-details__btn">
-              <a class="add" href="#">
-                <span>
-                  <svg>
-                    <use xlink:href="./images/sprite.svg#icon-cart-plus"></use>
-                  </svg>
-                </span>
-                ADD TO CART</a>
-              <a class="buy" href="#">
-                <span>
-                  <svg>
-                    <use xlink:href="./images/sprite.svg#icon-credit-card"></use>
-                  </svg>
-                </span>
-                BUY NOW
-              </a>
-            </div>
+            <form method="post" action="">
+              <input type="hidden" name="code" value="<?php echo $row['code'] ?>" />
+              <div class="product-details__btn">
+                  <a href="javascript:void(0);"><button type="submit" class="product__btn buy">Add to cart</button></a>
+              </div>
+            </form>
           </div>
 
           <div class="product-detail__right">
@@ -580,7 +598,7 @@ if (isset($_POST['action']) && $_POST['action']=="remove"){
                 <use xlink:href="./images/sprite.svg#icon-credit-card"></use>
               </svg>
             </div>
-            <p>MANY PAYMENT GATWAYS</p>
+            <p>MANY PAYMENT GATEWAYS</p>
           </div>
 
           <div class="facility__box">
@@ -632,7 +650,7 @@ if (isset($_POST['action']) && $_POST['action']=="remove"){
                 <use xlink:href="./images/sprite.svg#icon-location"></use>
               </svg>
             </span>
-            42 Dream House, Dreammy street, 7131 Dreamville, USA
+            15 Zaiceva street, Kazan, Russia
           </div>
           <div>
             <span>
@@ -640,7 +658,7 @@ if (isset($_POST['action']) && $_POST['action']=="remove"){
                 <use xlink:href="./images/sprite.svg#icon-envelop"></use>
               </svg>
             </span>
-            company@gmail.com
+            gubaidullin.b29@outlook.com
           </div>
           <div>
             <span>
@@ -648,7 +666,7 @@ if (isset($_POST['action']) && $_POST['action']=="remove"){
                 <use xlink:href="./images/sprite.svg#icon-phone"></use>
               </svg>
             </span>
-            456-456-4512
+            927-435-20-86
           </div>
           <div>
             <span>
@@ -656,7 +674,7 @@ if (isset($_POST['action']) && $_POST['action']=="remove"){
                 <use xlink:href="./images/sprite.svg#icon-paperplane"></use>
               </svg>
             </span>
-            Dream City, USA
+            Kazan, Russia
           </div>
         </div>
       </div>
