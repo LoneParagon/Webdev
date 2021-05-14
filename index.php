@@ -21,14 +21,13 @@
 
     if(empty($_SESSION["shopping_cart"])) {
       $_SESSION["shopping_cart"] = $cartArray;
-    }else{
+    } else {
       $array_keys = array_keys($_SESSION["shopping_cart"]);
       if(in_array($code,$array_keys)) {
       } else {
       $_SESSION["shopping_cart"] = array_merge($_SESSION["shopping_cart"],$cartArray);
       }
-
-      }
+    }
   }
 ?>
 <html lang="en">
@@ -194,7 +193,7 @@
               <div class="collection__data">
                 <span>New Colors Introduced</span>
                 <h1>HEADPHONES</h1>
-                <a href="#category">SHOP NOW</a>
+                <a href="./product.php?code=Headphone03">SHOP NOW</a>
               </div>
             </div>
           </div>
@@ -206,7 +205,7 @@
               <div class="collection__data">
                 <span>New devices</span>
                 <h1>SMARTPHONES</h1>
-                <a href="#category">SHOP NOW</a>
+                <a href="./product.php?code=iphone01">SHOP NOW</a>
               </div>
             </div>
           </div>
